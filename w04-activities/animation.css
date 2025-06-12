@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+@keyframes myanima {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateX(200px) translateY(-100px);
+    color: #fff;
+  }
+  50% {
+    transform: translateX(-100px) translateY(-100px);
+  }
+}
+
+.box{
+    background-color: pink;
+    border: palevioletred;
+    border-radius: 10px;
+    width: 200px;
+    height: 400px;
+    animation: myanima 3s infinite alternate;
+}
