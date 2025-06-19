@@ -1,0 +1,280 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #8EC2BD;
+  --primary-light: #bde6e1;
+  --secondary: #49616D;
+  --accent: #FCEAC3;
+  --dark: #03001D;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--dark);
+}
+
+header{
+    border-bottom: 10px solid var(--secondary);
+}
+
+header, footer {
+  background-color: var(--primary);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+h1, h2, .moodName {
+  font-family: 'Schoolbell', cursive;
+}
+
+main {
+  width: 95%;
+  margin: 1rem auto;
+  background-color: var(--accent);
+  min-height: 500px;
+}
+
+.welcome {
+  text-align: center;
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.welcome h2 {
+  font-family: 'Schoolbell', cursive;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome p {
+  font-size: 1rem;
+  color: var(--dark);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem auto;
+}
+
+#searchInput {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 90%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-light);
+  color: black;
+}
+
+#bookContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.book-card {
+  width: 100%;
+  max-width: 300px;
+  height: 380px;
+  margin: auto;
+  perspective: 1000px;
+}
+
+.book-card h3,
+.book-card p{
+    padding-top: 1rem;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.book-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+.book-cover {
+  width: 160px;
+  border-radius: 5px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 95%;
+  height: 95%;
+  max-width: 700px;
+  animation: fadeSlideIn 0.3s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+#modalContent img {
+  width: 160px;
+  height: auto;
+  border-radius: 8px;
+}
+
+#modalContent .details {
+  text-align: center;
+}
+
+.details p, .details h3 {
+  padding: 1rem;
+}
+
+#saveToFavoritesBtn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+#saveToFavoritesBtn:hover {
+  background-color: var(--primary);
+  color: black;
+}
+
+.moodName {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.close {
+  position: absolute;
+  top: 0.5rem; right: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.favorites-panel {
+  position: fixed;
+  top: 0; right: 0;
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  background-color: #f8f8f8;
+  border-left: 2px solid #ccc;
+  overflow-y: auto;
+  padding: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.favorites-panel h2{
+    margin-top: 50px;
+}
+
+.favorites-panel.visible {
+  transform: translateX(0);
+}
+
+.favorite-item{
+    background-color: var(--accent);
+    margin: 1rem;
+}
+
+.favorite-item img{
+    padding-top: 1rem;
+    display: block;
+    margin: 1rem auto;
+    width: 120px;
+    height: auto;
+}
+
+.favorite-item p{
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+.favorites-toggle {
+  position: fixed;
+  top: 1rem; right: 1rem;
+  z-index: 1001;
+  background-color: var(--secondary);
+  border-radius: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  border-top: 10px solid var(--secondary);
+}
